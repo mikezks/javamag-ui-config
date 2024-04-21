@@ -5,6 +5,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { APP_ROUTES } from './app.routes';
 import { provideRouterFeature } from './shared/+state';
+import { provideNavigationService } from './shared/logic-navigation';
+import { APP_NAVIGATION } from './app.navigation';
 
 
 export const appConfig: ApplicationConfig = {
@@ -12,6 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(APP_ROUTES,
       withComponentInputBinding()
     ),
+    provideNavigationService(APP_NAVIGATION),
     provideHttpClient(),
     provideStore(),
     provideEffects(),
