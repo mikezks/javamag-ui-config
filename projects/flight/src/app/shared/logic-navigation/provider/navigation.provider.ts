@@ -1,6 +1,7 @@
-import { Injectable, Provider, Type, inject } from "@angular/core";
+import { ENVIRONMENT_INITIALIZER, EnvironmentProviders, Injectable, Provider, Type, inject, makeEnvironmentProviders } from "@angular/core";
 import { AbstractNavigationService, NAVIGATION_CONFIG, NavigationConfig } from '../../model-navigation';
 import { DefaultNavigationService } from "./default-navigation.provider";
+import { mergeNavigationStates } from "../../util-navigation";
 
 
 const DEFAULT_SERVICE: Type<AbstractNavigationService> = DefaultNavigationService;
@@ -32,4 +33,22 @@ export function provideNavigationService(
       }
     }
   ];
+}
+
+export function provideNavigationConfig(config: NavigationConfig): EnvironmentProviders {
+  return makeEnvironmentProviders([
+    {
+      provide: NAVIGATION_CONFIG,
+      multi: true,
+      useValue: config
+    },
+    {
+      provide: ENVIRONMENT_INITIALIZER,
+      multi: true,
+      useFactory: (
+        navService = inject(NavigationService),
+        navConfig = inject<NavigationConfig[]>(NAVIGATION_CONFIG)
+      ) => () => navService.state.update(state => mergeNavigationStates(state, navConfig))
+    }
+  ]);
 }

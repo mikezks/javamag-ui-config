@@ -1,7 +1,6 @@
 import { Routes } from "@angular/router";
 import { provideEffects } from "@ngrx/effects";
 import { provideState } from "@ngrx/store";
-import { FlightTypeaheadComponent } from "../boarding/features/departure/departure.component";
 import { TicketEffects } from "./+state/effects";
 import { ticketFeature } from "./+state/reducer";
 import { FlightBookingComponent } from "./features/flight-booking/flight-booking.component";
@@ -9,6 +8,8 @@ import { FlightEditComponent } from "./features/flight-edit/flight-edit.componen
 import { FlightSearchComponent } from "./features/flight-search/flight-search.component";
 import { flightsResolverConfig } from "./logic/data-access/flight.resolver";
 import { MyFlightsComponent } from "./features/my-flights/my-flights.component";
+import { provideNavigationConfig } from "../shared/logic-navigation";
+import { BOOKING_NAVIGATION } from "./booking.navigation";
 
 
 export const BOOKING_ROUTES: Routes = [
@@ -16,6 +17,7 @@ export const BOOKING_ROUTES: Routes = [
     path: '',
     component: FlightBookingComponent,
     providers: [
+      provideNavigationConfig(BOOKING_NAVIGATION),
       provideState(ticketFeature),
       provideEffects([TicketEffects]),
     ],
@@ -42,11 +44,11 @@ export const BOOKING_ROUTES: Routes = [
             component: FlightEditComponent,
             resolve: flightsResolverConfig
           },
-          {
-            path: 'my-flights',
-            component: MyFlightsComponent,
-          }
         ]
+      },
+      {
+        path: 'my-flights',
+        component: MyFlightsComponent,
       }
     ]
   }

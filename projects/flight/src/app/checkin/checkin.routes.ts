@@ -3,12 +3,16 @@ import { PassengerSearchComponent } from "./features/passenger-search/passenger-
 import { PassengerEditComponent } from "./features/passenger-edit/passenger-edit.component";
 import { providePassengerStore } from "./+state/passenger.signal.store";
 import { isDevMode } from "@angular/core";
+import { CHECKIN_NAVIGATION } from "./checkin.navigation";
+import { provideNavigationConfig } from "../shared/logic-navigation";
+import { MilesComponent } from "./features/miles/miles.component";
 
 
 export const CHECKIN_ROUTES: Routes = [
   {
     path: '',
     providers: [
+      provideNavigationConfig(CHECKIN_NAVIGATION),
       providePassengerStore(isDevMode())
     ],
     children: [
@@ -34,6 +38,10 @@ export const CHECKIN_ROUTES: Routes = [
             component: PassengerEditComponent
           }
         ]
+      },
+      {
+        path: 'miles',
+        component: MilesComponent
       }
     ]
   }

@@ -17,3 +17,5 @@ export abstract class AbstractNavigationService {
 
   abstract toggleMenu(menuItem: string, active?: boolean): void;
 }
+
+export type EntityState<T> = { entities: Record<string, T>, ids: string[] };

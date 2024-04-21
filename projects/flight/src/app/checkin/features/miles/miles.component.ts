@@ -5,9 +5,15 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <p>
-      miles works!
-    </p>
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Miles</h2>
+      </div>
+
+      <div class="card-body">
+        <p>Find your collected miles here.</p>
+      </div>
+    </div>
   `,
   styles: ``
 })

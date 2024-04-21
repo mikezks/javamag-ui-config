@@ -15,35 +15,16 @@ export const APP_NAVIGATION: NavigationConfig = [
   {
     route: 'checkin',
     label: 'Checkin',
-    icon: 'checkin',
-    items: [
-      {
-        route: 'passenger',
-        label: 'Passenger',
-        icon: 'passenger'
-      },
-    ]
+    icon: 'checkin'
   },
   {
     route: 'luggage',
     label: 'Luggage',
-    icon: 'luggage',
-    items: [
-      {
-        route: 'checkin',
-        label: 'Checkin',
-        icon: 'luggage'
-      },
-      {
-        route: 'report-loss',
-        label: 'Report Loss',
-        icon: 'report-loss'
-      },
-    ]
+    icon: 'luggage'
   },
   {
     route: 'boarding',
     label: 'Boarding',
-    icon: 'boarding',
+    icon: 'boarding'
   },
 ];
