@@ -10,6 +10,7 @@ import { flightsResolverConfig } from "./logic/data-access/flight.resolver";
 import { MyFlightsComponent } from "./features/my-flights/my-flights.component";
 import { provideNavigationConfig } from "../shared/logic-navigation";
 import { BOOKING_NAVIGATION } from "./booking.navigation";
+import { FlightTypeaheadComponent } from "../boarding/features/departure/departure.component";
 
 
 export const BOOKING_ROUTES: Routes = [
@@ -44,6 +45,10 @@ export const BOOKING_ROUTES: Routes = [
             component: FlightEditComponent,
             resolve: flightsResolverConfig
           },
+          {
+            path: 'departures',
+            component: FlightTypeaheadComponent
+          }
         ]
       },
       {
