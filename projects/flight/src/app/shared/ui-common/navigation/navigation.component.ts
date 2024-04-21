@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavigationService } from '../../logic-navigation';
+import { ClickLocal } from '../click-local/click-local.directive';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { NavigationService } from '../../logic-navigation';
   standalone: true,
   imports: [
     NgClass,
-    RouterLink, RouterLinkActive
+    RouterLink, RouterLinkActive,
+    ClickLocal
   ],
   template: `
     <ul class="nav">
@@ -23,11 +25,15 @@ import { NavigationService } from '../../logic-navigation';
           </li>
         } @else {
           <li [class.menu-open]="item.open" >
-            <a (click)="nav.toggleMenu(item.route)">
+            <a
+              [routerLink]="item.route.split('/')"
+              routerLinkActive
+              (isActiveChange)="nav.toggleMenu(item.route, $event)"
+            >
               <i [ngClass]="'icon icon-' + item.icon"></i>
               <p>
                 {{ item.label }}
-                <b class="caret"></b>
+                <b (clickLocal)="nav.toggleMenu(item.route)" class="caret"></b>
               </p>
             </a>
 
